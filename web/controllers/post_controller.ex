@@ -3,6 +3,10 @@ defmodule Portfolio.PostController do
 
   alias Portfolio.Post
 
+  plug Portfolio.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
+
+  # plug :check_post_owner when action in [:update, :edit, :delete]
+
   def index(conn, _params) do
     posts = Repo.all(Post)
     render conn, "index.html", posts: posts
@@ -19,7 +23,9 @@ defmodule Portfolio.PostController do
   end
   
   def create(conn, %{"post" => post}) do
-    changeset = Post.changeset(%Post{}, post)
+    changeset = conn.assigns.user
+    |> build_assoc(:posts)
+    |> Post.changeset(post)
     
     case Repo.insert(changeset) do
       {:ok, _post} ->
@@ -59,4 +65,18 @@ defmodule Portfolio.PostController do
     |> put_flash(:info, "Post deleted")
     |> redirect(to: post_path(conn, :index))
   end
+
+  def check_post_owner(conn, _params) do
+    %{params: %{"id" => id}} = conn
+
+    if Repo.get(Topic, id).user_id == conn.assigns.user.id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You cannot edit that")
+      |> redirect(to: post_path(conn, :index))
+      |> halt()
+    end
+  end
+
 end

@@ -8,10 +8,18 @@
     <li class="collection-item"> 
       <%= link post.title, to: post_path(@conn, :show, post) %>
 
+        <%= if @conn.assigns.user && @conn.assigns.user.id == post.user_id do %>
         <div class="right">
           <%= link "Edit", to: post_path(@conn, :edit, post) %>
           <%= link "Delete", to: post_path(@conn, :delete, post), method: :delete %>
         </div>
+        <% end %>
     </li>
   <% end %>
 </ul>
+
+<div class="fixed-action-btn">
+  <%=link to: post_path(@conn, :new), class: "btn-floating btn-large waves-effect waves-light red" do %>
+    <i class="material-icons">add</i>
+  <% end %>
+</div>

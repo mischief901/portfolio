@@ -10,6 +10,7 @@ defmodule Portfolio.User do
     field :token, :string
     field :provider, :string
     field :email, :string
+    has_many :posts, Portfolio.Post
 
     timestamps()
   end

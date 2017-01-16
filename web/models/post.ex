@@ -4,6 +4,7 @@ defmodule Portfolio.Post do
   schema "posts" do
     field :title, :string
     field :content, :string
+    belongs_to :user, Portfolio.User
 
     timestamps()
   end

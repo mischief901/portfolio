@@ -12,8 +12,6 @@ defmodule Portfolio.UserAuthController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    IO.puts("++++++++++++++")
-    IO.inspect(conn.assigns.ueberauth_auth.info)
 
     user_params = %{token: auth.credentials.token, email: auth.info.email, provider: "github", username: auth.info.nickname, name: auth.info.name}
 
