@@ -7,13 +7,15 @@ defmodule Portfolio.User do
     field :username, :string
     field :password, :string, virtual: true
     field :password_hash, :string
+    field :token, :string
+    field :provider, :string
 
     timestamps()
   end
 
-  def changeset(model, params \\ :empty) do
-    model
-    |> cast(params, ~w(name username), [])
+  def changeset(struct, params \\ %{}) do
+    struct
+    |> cast(params, [:name, :username])
     |> validate_required([:name, :username])
   end
 
