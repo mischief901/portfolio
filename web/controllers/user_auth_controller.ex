@@ -4,7 +4,7 @@ defmodule Portfolio.UserAuthController do
 
   alias Portfolio.User
 
-  def signout(conn, _params) do
+  def sign_out(conn, _params) do
     conn
     |> configure_session(drop: true)
     |> put_flash(:info, "Signed Out")
@@ -13,7 +13,7 @@ defmodule Portfolio.UserAuthController do
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     IO.puts("++++++++++++++")
-    IO.inspect(conn)
+    IO.inspect(conn.assigns.ueberauth_auth.info)
 
     user_params = %{token: auth.credentials.token, email: auth.info.email, provider: "github", username: auth.info.nickname, name: auth.info.name}
 
