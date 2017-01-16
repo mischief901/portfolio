@@ -17,10 +17,22 @@
     <div class="container">
       <header class="header">
         <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li> <%= link "About", to: about_path(@conn, :index) %>
-            </li>
-          </ul>
+          <div class="nav-wrapper container">
+            <a href="/" class="brand-logo"> Discussions </a>
+            <ul class="right">
+            <%= if @conn.assigns[:user] do %>
+              <li>
+                <%= link "Sign Out", to: user_auth_path(@conn, :signout) %>
+              </li>
+            <% else %>
+              <li>
+                <%= link "Sign in with Github", to: user_auth_path(@conn, :request, "github") %>
+              </li>
+            <% end %>
+              <li> <%= link "About", to: about_path(@conn, :index) %>
+              </li>
+            </ul>
+          </div>
         </nav>
       </header>
 

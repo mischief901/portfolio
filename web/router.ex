@@ -16,10 +16,18 @@ defmodule Portfolio.Router do
   scope "/", Portfolio do
     pipe_through :browser # Use the default browser stack
 
-    get "/new", UserController, :new
     get "/about", AboutController, :index
     resources "/posts", PostController
     get "/", PostController, :index
+  end
+
+  scope "/auth", Portfolio do
+    pipe_through :browser
+
+    get "/new", UserAuthController, :sign_in
+    get "/signout", UserAuthController, :sign_out
+    get "/:provider", UserAuthController, :request
+    get "/:provider/callback", UserAuthController, :callback
   end
 
   # Other scopes may use custom stacks.

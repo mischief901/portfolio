@@ -9,14 +9,15 @@ defmodule Portfolio.User do
     field :password_hash, :string
     field :token, :string
     field :provider, :string
+    field :email, :string
 
     timestamps()
   end
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :username])
-    |> validate_required([:name, :username])
+    |> cast(params, [:name, :username, :provider, :token, :email])
+    |> validate_required([:name, :username, :provider, :token, :email])
   end
 
 end

@@ -1,0 +1,10 @@
+<h4> Test Form for Posts </h4>
+
+<%= form_for @changeset, post_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <%= text_input f, :title, placeholder: "Title", class: "form-control" %>
+    <%= error_tag f, :title %>
+  </div>
+
+  <%= submit "Add Topic", class: "btn btn-primary" %>
+<% end %>
