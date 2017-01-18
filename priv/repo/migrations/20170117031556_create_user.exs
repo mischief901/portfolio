@@ -2,12 +2,8 @@ defmodule Portfolio.Repo.Migrations.CreateUser do
   use Ecto.Migration
 
   def change do
-    create table(:users) do
-      add :name, :string
-      add :email, :string
-      add :username, :string
-
-      timestamps()
+    alter table(:users) do
+      remove :password_hash
     end
 
   end

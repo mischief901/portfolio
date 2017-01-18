@@ -28,6 +28,10 @@
               <li>
                 <%= link "Sign in with Github", to: user_auth_path(@conn, :request, "github") %>
               </li>
+              <li>
+                <%= link "Sign in with Twitter", to: user_auth_path(@conn, :request, "twitter") %>
+              </li>
+
             <% end %>
               <li> <%= link "About", to: about_path(@conn, :index) %>
               </li>

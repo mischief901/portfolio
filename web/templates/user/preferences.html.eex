@@ -1,0 +1,6 @@
+A form to get other information and preferences for users.
+
+<div>
+  <%= render "form.html", changeset: @changeset, action: user_path(@conn, :update, @user)%>
+
+</div>

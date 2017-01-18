@@ -4,7 +4,7 @@ defmodule Portfolio.Mixfile do
   def project do
     [app: :portfolio,
      version: "0.0.1",
-     elixir: "~> 1.4",
+     elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -19,7 +19,7 @@ defmodule Portfolio.Mixfile do
   def application do
     [mod: {Portfolio, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :ueberauth, :ueberauth_github]]
+                    :phoenix_ecto, :postgrex, :ueberauth, :ueberauth_github, :ueberauth_twitter, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,10 @@ defmodule Portfolio.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      {:ueberauth, "~> 0.4"},
-     {:ueberauth_github, "~> 0.4"}]
+     {:ueberauth_github, "~> 0.4"},
+     {:ueberauth_twitter, "~> 0.2"},
+     {:oauth, github: "tim/erlang-oauth"},
+     {:comeonin, "~> 3.0"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

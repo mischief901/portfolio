@@ -24,12 +24,17 @@ config :logger, :console,
 
 config :ueberauth, Ueberauth,
   providers: [
-    github: { Ueberauth.Strategy.Github, [] }
+    github: { Ueberauth.Strategy.Github, [] },
+    twitter: { Ueberauth.Strategy.Twitter, [] }
   ]
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: "f7967f56fc96702fb75f",
   client_secret: "00dd4658f8944706a59a0f6b3ddb15196d9ec025"
+
+config :ueberauth, Ueberauth.Strategy.Twitter.OAuth,
+  consumer_key: "jXpWfluhwYz68sT6wlLq93I9r",
+  consumer_secret: "pJBRJwc1bMAgufx2yXJh8t8dI9qJ3MkUXagblMly4uA3byIxqF"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

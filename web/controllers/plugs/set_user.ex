@@ -1,6 +1,5 @@
 defmodule Portfolio.Plugs.SetUser do
   import Plug.Conn
-  import Phoenix.Controller
 
   alias Portfolio.Repo
   alias Portfolio.User
