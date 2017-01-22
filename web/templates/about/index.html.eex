@@ -1,3 +1,54 @@
-<div>
-  This will be an about page for the site and myself.
+<div class="col s8">
+<div class="row" style="margin: 9.5px">
+  <div class="left col s6 blue-grey white-text" style="height: 80vh">
+    <div style="min-height: 30vh">
+      <h5 class="section" style="padding-bottom: 5px padding-top: 5px">
+        About This Site:</h5>
+      <div class="divider"> </div>
+      <p style="padding-top: 15px">
+        This site is devoted to the things I find interesting and the work I am 
+        doing as I begin to learn Computer Science. My primary focus is on 
+        functional programming concepts, concurrency, and language design decisions.
+      </p>
+    </div>
+    <div class="divider"> </div>
+    <div style="min-height: 30vh">
+      <ul><h5 class="section"> To Do: </h5>
+        <li class="collection-item blue-grey">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          Add Comments</li>
+        <li class="collection-item blue-grey">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          Add User Account Creation</li>
+        <li class="collection-item blue-grey">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          Create Admin Account</li>
+        <li class="collection-item blue-grey">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          Make Things Prettier </li>
+        <li class="collection-item blue-grey">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          Disable Editing Username and Name in Preferences </li>
+        <li class="collection-item blue-grey">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          Add Content </li>
+      </ul>
+    </div>
+  </div>
+  <div class="right col s6 blue white-text" style="height: 80vh">
+    <div style="min-height: 30vh">
+      <h5 class="section"> About Me:</h5>
+      <div class="divider"> </div>
+      <p style="padding-top: 15px">
+        I am currently a student at Tufts University pursuing a Master's degree in
+        Computer Science. I have B.S. degrees in Biomedical Engineering and
+        Chemical Engineering from Worcester Polytechnic Institute, but after spending
+        a few years in the Pharmaceutical Industry, decided I wanted a change and 
+        started to learn how to program.
+      </p>
+      <div class="divider"> </div>
+    </div>
+    <div style="min-height: 30vh">
+    </div>
+  </div>
 </div>

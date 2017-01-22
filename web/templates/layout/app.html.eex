@@ -7,22 +7,28 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Portfolio!</title>
+    <title>Misch Portfolio</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">]
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
 
   <body>
     <div class="container">
       <header class="header">
-        <nav role="navigation">
+        <nav role="navigation navbar-fixed-top" class="red">
           <div class="nav-wrapper container">
-            <a href="/" class="brand-logo"> Discussions </a>
+            <div class="left" style="height: 64px">
+              <a href="/" style="text-decoration: none"> Discussions </a>
+            </div>
             <ul class="right">
             <%= if @conn.assigns[:user] do %>
               <li>
                 <%= link "Sign Out", to: user_auth_path(@conn, :sign_out) %>
+              </li>
+              <li>
+                <%= link "Preferences", to: user_path(@conn, :preferences) %>
               </li>
             <% else %>
               <li>
@@ -40,8 +46,17 @@
         </nav>
       </header>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% 
+        info = get_flash(@conn, :info)
+        error = get_flash(@conn, :error)
+      %>
+      <%= if info do %>
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <% end %>
+      
+      <%= if error do %>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <% end %>
 
       <main role="main">
         <%= render @view_module, @view_template, assigns %>

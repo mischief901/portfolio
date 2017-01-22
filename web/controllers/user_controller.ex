@@ -3,10 +3,13 @@ defmodule Portfolio.UserController do
 
   alias Portfolio.User
 
-  def new(conn, params) do
+  def preferences(conn, _params) do
     user = conn.assigns.user.id
-    changeable = User.changeset_preferences(Repo.get(User, user))
-    render(conn, "preferences.html", changeset: changeable, user: user)
+    changeset = User.changeset_from_oauth(conn.assigns.user)
+    # from_oauth = conn.assigns.user
+    # changeset = User.changeset_preferences(from_oauth)
+    # IO.inspect(changeset)
+    render(conn, "preferences.html", changeset: changeset, user: user)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do
@@ -14,9 +17,9 @@ defmodule Portfolio.UserController do
     changeset = User.changeset_preferences(user, user_params)
 
     case Repo.update(changeset) do
-      {:ok, user} ->
+      {:ok, _user} ->
         conn
-        |> put_flash(:info, "User updated successfully.")
+        |> put_flash(:info, "Info updated successfully.")
         |> redirect(to: post_path(conn, :index))
       {:error, changeset} ->
         render(conn, "preferences.html", user: user, changeset: changeset)

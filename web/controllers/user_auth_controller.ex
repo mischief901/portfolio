@@ -3,7 +3,7 @@ defmodule Portfolio.UserAuthController do
   plug Ueberauth
 
   alias Portfolio.User
-  alias Ueberauth.Strategy.Helpers
+  # alias Ueberauth.Strategy.Helpers
 
   def sign_out(conn, _params) do
     conn
@@ -12,12 +12,7 @@ defmodule Portfolio.UserAuthController do
     |> redirect(to: post_path(conn, :index))
   end
 
-  
-
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    # IO.inspect auth
-    
-    
     token = cond do
       is_list(auth.credentials.token) -> List.to_string(auth.credentials.token)
       true -> auth.credentials.token
@@ -40,26 +35,22 @@ defmodule Portfolio.UserAuthController do
         conn
         |> put_flash(:info, "Thanks for Signing Up!")
         |> put_session(:user_id, user.id)
-        |> redirect(to: user_path(conn, :new))
+        |> assign(:changeset, changeset_from_oauth)
+        # |> IO.inspect
+        |> redirect(to: user_path(conn, :preferences))
       {:ok, :existing, user} ->
         conn
         |> put_flash(:info, "Welcome back!")
         |> put_session(:user_id, user.id)
         |> redirect(to: post_path(conn, :index))
-      {:error, reason} ->
-        # IO.puts("-----")
-        # IO.inspect(reason)
-        # IO.puts("-----")
+      {:error, _reason} ->
         conn
-        |> put_flash(:error, "Error signing in")
+        |> put_flash(:error, "Error signing in.")
         |> redirect(to: post_path(conn, :index))
     end
   end
 
-  defp insert_or_update_user(conn, changeset_from_oauth) do
-    # IO.inspect conn
-    # IO.puts "^^^^^^^^^^^^^^^^"
-    # IO.inspect changeset_from_oauth
+  defp insert_or_update_user(_conn, changeset_from_oauth) do
     case Repo.get_by(User, username: changeset_from_oauth.changes.username) do
       nil ->
         Repo.insert(changeset_from_oauth)

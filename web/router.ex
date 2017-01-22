@@ -18,7 +18,7 @@ defmodule Portfolio.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/about", AboutController, :index
-    get "/preferences", UserController, :new
+    get "/preferences", UserController, :preferences
     put "/preferences/:id", UserController, :update
     resources "/posts", PostController
     get "/", PostController, :index

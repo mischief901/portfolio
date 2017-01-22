@@ -5,7 +5,7 @@ defmodule Portfolio.PostController do
 
   plug Portfolio.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
 
-  # plug :check_post_owner when action in [:update, :edit, :delete]
+  plug :check_post_owner when action in [:update, :edit, :delete]
 
   def index(conn, _params) do
     posts = Repo.all(Post)
@@ -69,7 +69,7 @@ defmodule Portfolio.PostController do
   def check_post_owner(conn, _params) do
     %{params: %{"id" => id}} = conn
 
-    if Repo.get(Topic, id).user_id == conn.assigns.user.id do
+    if Repo.get(Post, id).user_id == conn.assigns.user.id do
       conn
     else
       conn

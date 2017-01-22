@@ -11,7 +11,7 @@ defmodule Portfolio.Post do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title])
+    |> cast(params, [:title, :content])
     |> validate_required([:title])
   end
 

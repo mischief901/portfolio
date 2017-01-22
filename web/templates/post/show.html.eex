@@ -1,1 +1,8 @@
-<%= @post.title %>
+<div class="container">
+  <div>
+    <%= @post.title %>
+  </div>
+  <div class="flow-test">
+    <%= @post.content %>
+  </div>
+</div>

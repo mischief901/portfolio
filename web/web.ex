@@ -48,7 +48,8 @@ defmodule Portfolio.Web do
 
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
-
+      
+      import Portfolio.InputHelpers
       import Portfolio.Router.Helpers
       import Portfolio.ErrorHelpers
       import Portfolio.Gettext
